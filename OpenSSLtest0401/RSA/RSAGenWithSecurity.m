@@ -52,7 +52,7 @@
     return encodeRes;
 }
 
--(void)ParseJWT
+-(NSString *)ParseJWT
 {
     NSString *jwt = @"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhayIsImRhdGEiOiJwMWNCb0VNeHBRY2N0cHhaTXBRYyIsImV4cCI6MTYxNzAwMTI3MiwiaWF0IjoxNjE3MDAwNjcyfQ.eG8U_PU5F20XyGfz0V-RFGqDkgexwQcsGH4tgSKWA4hSQ4oCM7p4Hiyj-o0ZpYyPHibvbrXxntHoT1DdcuTrWhmk3A8hC4VTcdYMPjekis_pgc6Sxmgbz-_6OXbtS2H5DRl-mHd3PbaVU1pNLg2tBMHeXYSZ-IuvmJW4Rz5qiNQ";
     
@@ -98,6 +98,11 @@
     NSLog(@"Setting Format Date: %@", stringFromDate);
     NSLog(@"Date: %@", date2);
     
+//    만료시간 로그
+    
+    NSString *activationKey = [jsonDic valueForKey:@"data"];
+    
+    return activationKey;
 }
 
 

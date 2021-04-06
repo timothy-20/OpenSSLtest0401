@@ -1,8 +1,8 @@
 //
-//  RSAGenWithSecurity.h
+//  RSAEncode.h
 //  OpenSSLtest0401
 //
-//  Created by 임정운 on 2021/04/05.
+//  Created by 임정운 on 2021/04/06.
 //  Copyright © 2021 임정운. All rights reserved.
 //
 
@@ -10,10 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RSAGenWithSecurity : NSObject
-
--(NSString *)JWTEncodeHS;
--(NSString *)ParseJWT;
+@interface RSAEncode : NSObject
 
 @end
 

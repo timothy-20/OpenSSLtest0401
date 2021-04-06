@@ -17,7 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RSAGenerateKey : NSObject
 
--(NSString *)performRSADecryptionForData:(NSString *)atData andModulus:(NSString *)mod andExponent:(NSString *)exp;
+-(RSA *)GenKeyWithRSA;
+-(void)EncryptionWithRSA;
 
 @end
 

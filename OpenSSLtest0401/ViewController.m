@@ -7,6 +7,8 @@
 //
 
 #import "ViewController.h"
+#import "RSAGenerateKey.h"
+#import "RSAGenWithSecurity.h"
 
 @interface ViewController ()
 
@@ -16,7 +18,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+//    RSAGenerateKey *RSA = [[RSAGenerateKey alloc] init];
+    RSAGenWithSecurity *JWT = [[RSAGenWithSecurity alloc] init];
+    
+//    [RSA performRSADecryptionForData:@"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhayIsImRhdGEiOiJwMWNCb0VNeHBRY2N0cHhaTXBRYyIsImV4cCI6MTYxNzAwMTI3MiwiaWF0IjoxNjE3MDAwNjcyfQ.eG8U_PU5F20XyGfz0V-RFGqDkgexwQcsGH4tgSKWA4hSQ4oCM7p4Hiyj-o0ZpYyPHibvbrXxntHoT1DdcuTrWhmk3A8hC4VTcdYMPjekis_pgc6Sxmgbz-_6OXbtS2H5DRl-mHd3PbaVU1pNLg2tBMHeXYSZ-IuvmJW4Rz5qiNQ" andModulus:@"c109d8b86ee2c46965c399a70df07839fd9cb30c0dfef15c33fe06761349433208ce5c474b0fddf001c44ca6b25ac8e0f2470ea3d2b90a69b64cbb021b8ba7de4a02b6141f6c42c82be580d18d7932858ad963f1aea9e374b20846efbf472a0c8c9d5324030075a86a525744c63506e9084d2d3c0f8f0fa199c900ff17573a0b" andExponent:@"010001"];
+    
+//    [JWT JWTEncodeHS];
+    [JWT ParseJWT];
+    
 }
 
 

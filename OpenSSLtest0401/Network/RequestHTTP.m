@@ -42,7 +42,8 @@
     [request setValue:xToken forHTTPHeaderField:@"X-AUTH-TOKEN"];
     
     NSMutableDictionary *jsonBody = [[NSMutableDictionary alloc] init];
-    
+    [jsonBody setObject:@"value1" forKey:@"key1"];
+    [jsonBody setObject:@"value2" forKey:@"key2"];
     
 }
 

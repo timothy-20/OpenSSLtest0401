@@ -83,7 +83,7 @@
 //    jwt의 payload 추출 완료
     
     NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:[decodeString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-    NSLog(@"%@", jsonDic);
+//    NSLog(@"%@", jsonDic);
     
 //    json데이터를 dictionary로 받음
     
@@ -95,8 +95,8 @@
     
     NSString *stringFromDate = [formatter stringFromDate:date2];
     
-    NSLog(@"Setting Format Date: %@", stringFromDate);
-    NSLog(@"Date: %@", date2);
+//    NSLog(@"Setting Format Date: %@", stringFromDate);
+//    NSLog(@"Date: %@", date2);
     
 //    만료시간 로그
     

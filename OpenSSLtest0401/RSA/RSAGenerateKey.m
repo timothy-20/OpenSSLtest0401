@@ -40,13 +40,13 @@
     return publicKey;
 }
 
-//-(NSString *)hexWithData:(unsigned char *)data ofLength:(NSUInteger)len
-//{
-////    NSMutableString *tmp = [NSMutableString string];
-////    for (NSUInteger i = 0; i < len; i++) {
-////        [tmp appendFormat:@"%02x", data[i]];
-////    }
-//
+-(NSString *)hexWithData:(unsigned char *)data ofLength:(NSUInteger)len
+{
+    NSMutableString *tmp = [NSMutableString string];
+    for (NSUInteger i = 0; i < len; i++) {
+        [tmp appendFormat:@"%02x", data[i]];
+    }
+
 //    NSString *strData = [NSString stringWithUTF8String:(char *)data];
 //    NSMutableString *newString = [[NSMutableString alloc] init];
 //
@@ -59,10 +59,13 @@
 //        [newString appendFormat:@"%c", (char)value];
 //    }
 //
-//    return newString;
-//}
+    return tmp;
+}
 
--(void)EncryptionWithRSA
+typedef void(^blockTest)(int a, int b);
+
+
+-(NSString *)EncryptionWithRSA
 {
     RSAGenWithSecurity *akClass = [[RSAGenWithSecurity alloc] init];
     NSString *plainText = [akClass ParseJWT];
@@ -81,13 +84,14 @@
         NSLog(@"encrypt failed");
         result = @"";
     } else {
-        NSData *data = [NSData dataWithBytes:(const char*)crip length:rsa_length];
+//        NSData *data = [NSData dataWithBytes:(const char*)crip length:rsa_length];
+//        NSString *base64Encoded = [data base64EncodedStringWithOptions:0];
+        result = [self hexWithData:crip ofLength:rsa_length];
         
-//        result = [self hexWithData:crip ofLength:rsa_length];
-        result = [NSString stringWithUTF8String:(char *)crip];
-        
-        NSLog(@"encrypt success: %@", result);
+        NSLog(@"encrypt success_with hex: %@", result);
     }
+    
+    return result;
 }
 
 

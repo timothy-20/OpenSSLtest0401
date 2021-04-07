@@ -42,7 +42,6 @@
 		9941C2AF2615B6A200C06BF0 /* RSAGenerateKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAGenerateKey.m; sourceTree = "<group>"; };
 		9941C2B1261ADD9100C06BF0 /* RSAGenWithSecurity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSAGenWithSecurity.h; sourceTree = "<group>"; };
 		9941C2B2261ADD9100C06BF0 /* RSAGenWithSecurity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAGenWithSecurity.m; sourceTree = "<group>"; };
-		99D30DC9261C292100C233FC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		99D30DCB261C2B3D00C233FC /* RequestHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestHTTP.h; sourceTree = "<group>"; };
 		99D30DCC261C2B3D00C233FC /* RequestHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestHTTP.m; sourceTree = "<group>"; };
 		99D30DCE261C2B5800C233FC /* ResponseHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResponseHTTP.h; sourceTree = "<group>"; };
@@ -111,7 +110,6 @@
 				9941C2A22615B16E00C06BF0 /* LaunchScreen.storyboard */,
 				9941C2A52615B16E00C06BF0 /* Info.plist */,
 				9941C2A62615B16E00C06BF0 /* main.m */,
-				99D30DC9261C292100C233FC /* README.md */,
 			);
 			path = OpenSSLtest0401;
 			sourceTree = "<group>";

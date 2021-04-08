@@ -20,7 +20,24 @@
 
 @implementation RequestHTTP
 
--(void)requestAuth
++ (NSString *)dictionaryToJson:(NSDictionary *)dic
+{
+    NSString *result = @"";
+    NSError *err;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&err];
+    
+    if(! jsonData) {
+        NSLog(@"Error: %@", err);
+    } else {
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        result = jsonString;
+    }
+    
+    return result;
+}
+
+
+- (void)requestAuth
 {
     RSAGenerateKey *mPathAK = [[RSAGenerateKey alloc] init];
     NSString *activationKey = [mPathAK EncryptionWithRSA];
@@ -41,9 +58,19 @@
     
     [request setValue:xToken forHTTPHeaderField:@"X-AUTH-TOKEN"];
     
+//    HTTP Request Header
+    
     NSMutableDictionary *jsonBody = [[NSMutableDictionary alloc] init];
-    [jsonBody setObject:@"value1" forKey:@"key1"];
-    [jsonBody setObject:@"value2" forKey:@"key2"];
+    [jsonBody setObject:@"test" forKey:@"key1"];
+    [jsonBody setObject:@"test" forKey:@"key2"];
+    
+    NSMutableData *body = [[NSMutableData alloc] init];
+    [body appendData:[[RequestHTTP dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
+    //[body appendData:[[NSString dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [request setHTTPBody:body];
+    
+//    HTTP Request Body
     
 }
 

@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RequestHTTP : NSObject
 
 -(void)requestAuth;
++ (NSString *)dictionaryToJson:(NSDictionary *)dic;
 
 @end
 

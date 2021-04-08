@@ -20,6 +20,7 @@
 		99D30DD0261C2B5800C233FC /* ResponseHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DCF261C2B5800C233FC /* ResponseHTTP.m */; };
 		99D30DD4261C67C400C233FC /* RSAEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DD3261C67C400C233FC /* RSAEncode.m */; };
 		99D30DDC261D9BD200C233FC /* GetTokenJWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DDB261D9BD200C233FC /* GetTokenJWT.m */; };
+		99D30DDF261E906500C233FC /* GeneratePem.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DDE261E906500C233FC /* GeneratePem.m */; };
 		F59689CD330D79B31FCF20C7 /* libPods-OpenSSLtest0401.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7125BB2C1A568B7CB205FA /* libPods-OpenSSLtest0401.a */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,8 @@
 		99D30DD3261C67C400C233FC /* RSAEncode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RSAEncode.m; sourceTree = "<group>"; };
 		99D30DDA261D9BD200C233FC /* GetTokenJWT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetTokenJWT.h; sourceTree = "<group>"; };
 		99D30DDB261D9BD200C233FC /* GetTokenJWT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetTokenJWT.m; sourceTree = "<group>"; };
+		99D30DDD261E906500C233FC /* GeneratePem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratePem.h; sourceTree = "<group>"; };
+		99D30DDE261E906500C233FC /* GeneratePem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeneratePem.m; sourceTree = "<group>"; };
 		FBC5209F42C17B14363C6059 /* Pods-OpenSSLtest0401.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSSLtest0401.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSSLtest0401/Pods-OpenSSLtest0401.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -141,6 +144,8 @@
 			children = (
 				99D30DD2261C67C400C233FC /* RSAEncode.h */,
 				99D30DD3261C67C400C233FC /* RSAEncode.m */,
+				99D30DDD261E906500C233FC /* GeneratePem.h */,
+				99D30DDE261E906500C233FC /* GeneratePem.m */,
 			);
 			path = JusTry;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				99D30DD0261C2B5800C233FC /* ResponseHTTP.m in Sources */,
 				9941C29C2615B16900C06BF0 /* ViewController.m in Sources */,
 				9941C2962615B16900C06BF0 /* AppDelegate.m in Sources */,
+				99D30DDF261E906500C233FC /* GeneratePem.m in Sources */,
 				9941C2B02615B6A200C06BF0 /* RSAGenerateKey.m in Sources */,
 				9941C2B3261ADD9100C06BF0 /* RSAGenWithSecurity.m in Sources */,
 				9941C2A72615B16E00C06BF0 /* main.m in Sources */,

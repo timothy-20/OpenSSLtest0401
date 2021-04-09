@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+@class RequestHTTP;
+@class ResponseHTTP;
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ResponseHTTP : NSObject
+
+@property (nonatomic, strong) RequestHTTP *requestURL;
 
 @end
 

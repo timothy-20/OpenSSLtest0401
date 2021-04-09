@@ -20,6 +20,11 @@
 
 @implementation RequestHTTP
 
+-(void)dealloc
+{
+    self.request = nil;
+}
+
 + (NSString *)dictionaryToJson:(NSDictionary *)dic
 {
     NSString *result = @"";
@@ -46,17 +51,17 @@
     NSLog(@"%@", urlStr);
     
     NSURL *url = [NSURL URLWithString: urlStr];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    self.request = [NSMutableURLRequest requestWithURL:url];
     
-    [request setHTTPMethod:HTTP_METHOD_POST];
+    [self.request setHTTPMethod:HTTP_METHOD_POST];
     
-    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:[NSString stringWithFormat:@"Basic %@", credential] forHTTPHeaderField:@"Authorization"];
+    [self.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [self.request setValue:[NSString stringWithFormat:@"Basic %@", credential] forHTTPHeaderField:@"Authorization"];
     
     GetTokenJWT *xTokenClass = [[GetTokenJWT alloc] init];
     NSString *xToken = [xTokenClass XAuthToken];
     
-    [request setValue:xToken forHTTPHeaderField:@"X-AUTH-TOKEN"];
+    [self.request setValue:xToken forHTTPHeaderField:@"X-AUTH-TOKEN"];
     
 //    HTTP Request Header
     
@@ -65,10 +70,10 @@
     [jsonBody setObject:@"test" forKey:@"key2"];
     
     NSMutableData *body = [[NSMutableData alloc] init];
-    [body appendData:[[RequestHTTP dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[NSString dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
     //[body appendData:[[NSString dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
     
-    [request setHTTPBody:body];
+    [self.request setHTTPBody:body];
     
 //    HTTP Request Body
     

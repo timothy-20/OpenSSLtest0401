@@ -13,7 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface RequestHTTP : NSObject
 
 -(void)requestAuth;
-+ (NSString *)dictionaryToJson:(NSDictionary *)dic;
+@property (nonatomic, strong) NSMutableURLRequest *request;
+
+@end
+
+@interface NSString (JSONAddtions)
++(NSString *)dictionaryToJson:(NSDictionary *)dic;
 
 @end
 

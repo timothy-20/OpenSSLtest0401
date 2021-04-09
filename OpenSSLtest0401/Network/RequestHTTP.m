@@ -10,19 +10,12 @@
 #import "RSAGenerateKey.h"
 #import "GetTokenJWT.h"
 
-#define URL @"https://10.10.20.51:9443/provision/validation/"
-#define MAKE_URL(API) ([NSString stringWithFormat:@"%@%@",URL ,API])
-
-#define credential @"NjAxMmRkZGNjN2U5Yjg5NzU1OTBmOTFlOGVmZmMwNDZlOGU5YWFhYzoyZjljNjJjYzI1OGJhODQ3MGFkNGExNGI1YmQ1MDYyYTQzM2FhNTNj"
-
-#define HTTP_METHOD_GET @"GET"
-#define HTTP_METHOD_POST @"POST"
-
 @implementation RequestHTTP
 
 -(void)dealloc
 {
     self.request = nil;
+    self.testString = nil;
 }
 
 + (NSString *)dictionaryToJson:(NSDictionary *)dic
@@ -41,8 +34,31 @@
     return result;
 }
 
+-(id)initWithURL:(NSURL *)inURL
+{
+    self = [super init];
+    
+    if(self) {
+        self.request = [[NSMutableURLRequest alloc] initWithURL:inURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15.0];
+        self.testString = [[NSString alloc] initWithFormat:@"test string"];
+        
+        NSString *urlString = [NSString stringWithFormat:@"%@", MAKE_URL([self.mPathKey EncryptionWithRSA])];
+        NSLog(@"%@", urlString);
+        
+        self.request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+        [self.request setHTTPMethod:HTTP_METHOD_GET];
+        [self.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [self.request setValue:[NSString stringWithFormat:@"Basic %@", credential] forHTTPHeaderField:@"Authorization"];
+        
+        
+        
+    }
+    
+    return self;
+}
 
-- (void)requestAuth
+
+-(void)requestAuth
 {
     RSAGenerateKey *mPathAK = [[RSAGenerateKey alloc] init];
     NSString *activationKey = [mPathAK EncryptionWithRSA];
@@ -53,7 +69,7 @@
     NSURL *url = [NSURL URLWithString: urlStr];
     self.request = [NSMutableURLRequest requestWithURL:url];
     
-    [self.request setHTTPMethod:HTTP_METHOD_POST];
+    [self.request setHTTPMethod:HTTP_METHOD_GET];
     
     [self.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [self.request setValue:[NSString stringWithFormat:@"Basic %@", credential] forHTTPHeaderField:@"Authorization"];
@@ -70,13 +86,14 @@
     [jsonBody setObject:@"test" forKey:@"key2"];
     
     NSMutableData *body = [[NSMutableData alloc] init];
-    [body appendData:[[NSString dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[RequestHTTP dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
     //[body appendData:[[NSString dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [self.request setHTTPBody:body];
     
 //    HTTP Request Body
-    
+
+    self.testString = [[NSString alloc] initWithFormat:@"testString"];
 }
 
 @end

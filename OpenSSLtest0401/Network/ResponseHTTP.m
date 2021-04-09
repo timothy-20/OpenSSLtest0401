@@ -17,23 +17,19 @@ typedef NS_ENUM(int, netResponseType) {
 
 typedef void(^networkResponseBlock)(ResponseHTTP *response, netResponseType status);
 
-NSHTTPURLResponse *responseURL = NULL;
-NSMutableData *responseData = NULL;
-NSError *error = NULL;
-
 @implementation ResponseHTTP
 
 -(int)statusCode
 {
-    NSInteger statusCode = [responseURL statusCode];
+    NSInteger statusCode = [self.responseURL statusCode];
     
     if (statusCode == 200) {
         NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
         [dic setValue:[NSString stringWithFormat:@"%d", (int)statusCode] forKey:@"HTTPStatusCode"];
         [dic setValue:[NSHTTPURLResponse localizedStringForStatusCode:statusCode] forKey:@"HTTPStatus"];
-        [dic setValue:[[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding] forKey:@"HTTPResponseData"];
+        [dic setValue:[[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] forKey:@"HTTPResponseData"];
         
-        error = [NSError errorWithDomain:@"NetErrorManager" code:statusCode userInfo:dic];
+        self.error = [NSError errorWithDomain:@"NetErrorManager" code:statusCode userInfo:dic];
         //errorwithDomain은 에러발생 시, 어느 서버로 error 메시지를 전달할지를 기능하는 인자인 것 같다.
     }
     
@@ -42,12 +38,12 @@ NSError *error = NULL;
 
 -(NSDictionary *)headerResponse
 {
-    return [responseURL allHeaderFields];
+    return [self.responseURL allHeaderFields];
 }
 
 -(NSDictionary *)responseAuth
 {
-    NSString *postData = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+    NSString *postData = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
     [self statusCode];
     
     NSData *data = [postData dataUsingEncoding:NSUTF8StringEncoding];

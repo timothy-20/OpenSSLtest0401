@@ -8,10 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@class RequestHTTP;
+@class ResponseHTTP;
 
 @interface RequestManager : NSObject
 
-@end
+@property (nonatomic, strong) NSMutableArray *arrRequest;
 
-NS_ASSUME_NONNULL_END
+@property (nonatomic, strong) RequestHTTP *requestClass;
+@property (nonatomic, strong) ResponseHTTP *responseClass;
+
+-(void)sendRequestData;
+
+@end

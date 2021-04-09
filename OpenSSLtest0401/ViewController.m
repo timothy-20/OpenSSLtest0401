@@ -13,6 +13,7 @@
 
 #import "GetTokenJWT.h"
 #import "RequestHTTP.h"
+#import "RequestManager.h"
 
 @interface ViewController ()
 
@@ -23,15 +24,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    RSAGenerateKey *RSA = [[RSAGenerateKey alloc] init];
-    RSAGenWithSecurity *JWT = [[RSAGenWithSecurity alloc] init];
-    RequestHTTP *req = [[RequestHTTP alloc] init];
-    GetTokenJWT *token = [[GetTokenJWT alloc] init];
+//    RSAGenerateKey *RSA = [[RSAGenerateKey alloc] init];
+//    RSAGenWithSecurity *JWT = [[RSAGenWithSecurity alloc] init];
+//    RequestHTTP *req = [[RequestHTTP alloc] init];
+//    GetTokenJWT *token = [[GetTokenJWT alloc] init];
+    RequestManager *reqManager = [[RequestManager alloc] init];
     
 //    [JWT JWTEncodeHS];
 //    [JWT ParseJWT];
     
-    [req requestAuth];
+//    [req requestAuth];
+    [reqManager sendRequestData];
     
 //    [RSA EncryptionWithRSA];
     

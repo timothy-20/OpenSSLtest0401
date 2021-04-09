@@ -8,6 +8,26 @@
 
 #import "RequestManager.h"
 
+#import "RequestHTTP.h"
+#import "ResponseHTTP.h"
+
 @implementation RequestManager
+
+-(void)sendRequestData
+{
+    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    
+    NSLog(@"URL: %@", [[self.requestClass request] URL]);
+    NSDictionary *headerField = [[self.requestClass request] allHTTPHeaderFields];
+    NSLog(@"request Header: %@", headerField);
+    
+    NSLog(@"%@", [self.requestClass testString]);
+    
+    NSData *bodyField = [[self.requestClass request] HTTPBody];
+    if(nil != bodyField) {
+        NSString *bodyFieldString = [[NSString alloc] initWithData:bodyField encoding:NSUTF8StringEncoding];
+        NSLog(@"request Body: %@", bodyFieldString);
+    }
+}
 
 @end

@@ -17,6 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) RequestHTTP *requestURL;
 
+-(NSDictionary *)headerResponse;
+-(NSDictionary *)responseAuth;
+
+@property (nonatomic, strong) NSHTTPURLResponse *responseURL;
+@property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) NSError *error;
+
 @end
 
 NS_ASSUME_NONNULL_END

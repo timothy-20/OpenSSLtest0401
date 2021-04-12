@@ -35,11 +35,22 @@
     RequestHTTP *inRequest = [[RequestHTTP alloc] init];
     NSURL *url =  inRequest.requestURL;
     
-    RequestHTTP *request = [RequestHTTP requestWithURL:url];
+    RequestHTTP *requestWithURL = [RequestHTTP requestWithURL:url];
     
-    NSLog(@"%@", request.request.URL);
-    NSLog(@"%@", request.request.allHTTPHeaderFields);
+//    NSLog(@"%@", requestWithURL.request.URL);
+//    NSLog(@"%@", requestWithURL.request.allHTTPHeaderFields);
     
+    [inRequest requestBody];
+    
+    if (requestWithURL.request.HTTPBody == nil) {
+        NSLog(@"jsonBody data is nil");
+    } else {
+        NSError *error;
+        NSData *jsonBodyData = [NSJSONSerialization dataWithJSONObject:requestWithURL.request.HTTPBody options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonBodyStr = [[NSString alloc] initWithData:jsonBodyData encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"%@", jsonBodyStr);
+    }
 
 //    NSLog(@"URL: %@", inRequest.request.URL);
 //    NSLog(@"dicHeaderData: %@", inRequest.request.allHTTPHeaderFields);

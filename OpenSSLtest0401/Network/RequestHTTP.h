@@ -20,8 +20,8 @@ typedef NSString *netRequestMethod;
 
 @interface RequestHTTP : NSObject
 
+@property (atomic, strong) NSMutableDictionary *requestBodyData;
 @property (nonatomic, strong) NSMutableURLRequest *request;
-@property (nonatomic, strong) NSString *testString;
 @property (nonatomic, strong) NSURL *requestURL;
 
 //@property (nonatomic, strong) RSAGenerateKey *mPathKey;
@@ -29,5 +29,6 @@ typedef NSString *netRequestMethod;
 
 -(void)requestBody;
 +(RequestHTTP *)requestWithURL:(NSURL *)inURL;
++(NSString *)dictionaryToJson:(NSDictionary *)dic;
 
 @end

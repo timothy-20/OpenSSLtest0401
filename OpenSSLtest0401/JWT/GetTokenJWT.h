@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface GetTokenJWT : NSObject
 
 +(GetTokenJWT *)XAuthToken;
@@ -17,5 +15,3 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSString *tokenResult;
 
 @end
-
-NS_ASSUME_NONNULL_END

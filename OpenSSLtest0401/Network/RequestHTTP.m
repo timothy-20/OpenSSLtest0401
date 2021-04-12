@@ -16,9 +16,9 @@
 
 -(void)dealloc
 {
+    self.requestBodyData = nil;
     self.request = nil;
     self.requestURL = nil;
-    self.testString = nil;
 }
 
 + (NSString *)dictionaryToJson:(NSDictionary *)dic
@@ -42,14 +42,14 @@
     self = [super init];
     
     if(self) {
-//        RSAGenerateKey *rsa = [RSAGenerateKey generateKey];
+        self.requestBodyData = [[NSMutableDictionary alloc] init];
         
+//        RSAGenerateKey *rsa = [RSAGenerateKey generateKey];
         RSAGenerateKey *rsa2 = [[RSAGenerateKey alloc] init];
         
         self.requestURL = [[NSURL alloc] initWithString:MAKE_URL([rsa2 resultRSA])];
         
         self.request = [[NSMutableURLRequest alloc] initWithURL:inURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15.0];
-        self.testString = [[NSString alloc] initWithFormat:@"test string"];
         
         NSString *urlString = [NSString stringWithFormat:@"%@", MAKE_URL([rsa2 resultRSA])];
         
@@ -74,26 +74,46 @@
     return request;
 }
 
--(void)requestBody
+-(id)getRequestValue:(NSString *)inDicName
+{
+    return [self.requestBodyData valueForKey:inDicName];
+}
+
+//dictionary property를 초기화하기 위한 용도?
+
+-(void)setRequestDictionary:(NSDictionary *)inDic
+{
+    if (inDic == nil) {
+        [self.requestBodyData removeAllObjects];
+    } else {
+        [self.requestBodyData setDictionary:inDic];
+    }
+}
+
+-(void)sendJsonDictionary
 {
     NSMutableDictionary *jsonBody = [[NSMutableDictionary alloc] init];
+    
     [jsonBody setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].identifierForVendor.UUIDString] forKey:@"deviceId"];
     [jsonBody setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name] forKey:@"deviceName"];
     [jsonBody setObject:[NSString stringWithFormat:@"ios"] forKey:@"os"];
     [jsonBody setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].systemVersion] forKey:@"osVersion"];
-    [jsonBody setObject:[NSString stringWithFormat:@"%@"] forKey:@"appVersion"];
+    [jsonBody setObject:[NSString stringWithFormat:@"%@", [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"]] forKey:@"appVersion"];
     [jsonBody setObject:@"" forKey:@"token"];
-    //json에는 클라이언트 기기 정보가 들어가야 한다.
+    
+    [self setRequestDictionary:jsonBody];
+}
+
+-(void)requestBody
+{
+    [self sendJsonDictionary];
     
     NSMutableData *body = [[NSMutableData alloc] init];
-    [body appendData:[[RequestHTTP dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
+    [body appendData:[[RequestHTTP dictionaryToJson:self.requestBodyData] dataUsingEncoding:NSUTF8StringEncoding]];
     //[body appendData:[[NSString dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];
     
     [self.request setHTTPBody:body];
-    
 //    HTTP Request Body
-
-    self.testString = [[NSString alloc] initWithFormat:@"testString"];
 }
 
 @end

@@ -43,11 +43,11 @@
             NSLog(@"encrypt failed");
             self.resultRSA = @"";
         } else {
-    //        NSData *data = [NSData dataWithBytes:(const char*)crip length:rsa_length];
-    //        NSString *base64Encoded = [data base64EncodedStringWithOptions:0];
+//            NSData *data = [NSData dataWithBytes:(const char*)crip length:rsa_length];
+//            NSString *base64Encoded = [data base64EncodedStringWithOptions:0];
             self.resultRSA = [self hexWithData:crip ofLength:rsa_length];
             
-            NSLog(@"encrypt success_with hex: %@", self.resultRSA);
+//            NSLog(@"encrypt success_with hex: %@", self.resultRSA);
         }
     }
     

@@ -15,25 +15,39 @@
 
 @implementation GetTokenJWT
 
--(NSString *)XAuthToken
+-(void)dealloc
 {
-    JWTClaimsSet *claimSet = [[JWTClaimsSet alloc] init];
-    claimSet.subject = @"sub";
-    claimSet.issuer = @"cubelogin";
-    claimSet.expirationDate = [NSDate date];
-    claimSet.audience = @"{{http_request_server}}/provision/validation/";
+    self.tokenResult = nil;
+}
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        JWTClaimsSet *claimSet = [[JWTClaimsSet alloc] init];
+        claimSet.subject = @"sub";
+        claimSet.issuer = @"cubelogin";
+        claimSet.expirationDate = [NSDate date];
+        claimSet.audience = @"{{http_request_server}}/provision/validation/";
+        
+        NSDictionary *header = @{
+            @"typ":@"JWT",
+            @"alg":@"HS256"
+        };
+        
+        id<JWTAlgorithm> algorithm = [JWTAlgorithmFactory algorithmByName:algorithmName];
+        JWTBuilder *encodeBuilder = [JWT encodeClaimsSet: claimSet];
+        
+        self.tokenResult = encodeBuilder.secret(publicKey).algorithm(algorithm).headers(header).encode;
+    }
     
-    NSDictionary *header = @{
-        @"typ":@"JWT",
-        @"alg":@"HS256"
-    };
-    
-    id<JWTAlgorithm> algorithm = [JWTAlgorithmFactory algorithmByName:algorithmName];
-    JWTBuilder *encodeBuilder = [JWT encodeClaimsSet: claimSet];
-    
-    NSString *result = encodeBuilder.secret(publicKey).algorithm(algorithm).headers(header).encode;
-    
-    return result;
+    return self;
+}
+
++(GetTokenJWT *)XAuthToken
+{
+    GetTokenJWT *token = [[GetTokenJWT alloc] init];
+    return token;
 }
 
 @end

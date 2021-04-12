@@ -17,27 +17,47 @@
 
 @implementation RSAGenerateKey
 
--(RSA *)GenKeyWithRSA
+-(void)dealloc
 {
-    //    [RSA performRSADecryptionForData:@"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhayIsImRhdGEiOiJwMWNCb0VNeHBRY2N0cHhaTXBRYyIsImV4cCI6MTYxNzAwMTI3MiwiaWF0IjoxNjE3MDAwNjcyfQ.eG8U_PU5F20XyGfz0V-RFGqDkgexwQcsGH4tgSKWA4hSQ4oCM7p4Hiyj-o0ZpYyPHibvbrXxntHoT1DdcuTrWhmk3A8hC4VTcdYMPjekis_pgc6Sxmgbz-_6OXbtS2H5DRl-mHd3PbaVU1pNLg2tBMHeXYSZ-IuvmJW4Rz5qiNQ" andModulus:@"c109d8b86ee2c46965c399a70df07839fd9cb30c0dfef15c33fe06761349433208ce5c474b0fddf001c44ca6b25ac8e0f2470ea3d2b90a69b64cbb021b8ba7de4a02b6141f6c42c82be580d18d7932858ad963f1aea9e374b20846efbf472a0c8c9d5324030075a86a525744c63506e9084d2d3c0f8f0fa199c900ff17573a0b" andExponent:@"010001"];
+    self.resultRSA = nil;
+}
+
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        RSAGenWithSecurity *akClass = [[RSAGenWithSecurity alloc] init];
+        NSString *plainText = [akClass ParseJWT];
+        const char *plain = [plainText UTF8String];
+        
+        RSA *publickey = [self GenKeyWithRSA];
+        
+        int rsa_length = RSA_size(publickey);
+        unsigned char *crip[rsa_length];
+        
+        self.resultRSA = [[NSString alloc] init];
+        
+        int iRsaRet = RSA_public_encrypt(strlen(plain), (const unsigned char *)plain, (unsigned char *)crip, publickey, RSA_PKCS1_PADDING);
+        
+        if(iRsaRet <= 0) {
+            NSLog(@"encrypt failed");
+            self.resultRSA = @"";
+        } else {
+    //        NSData *data = [NSData dataWithBytes:(const char*)crip length:rsa_length];
+    //        NSString *base64Encoded = [data base64EncodedStringWithOptions:0];
+            self.resultRSA = [self hexWithData:crip ofLength:rsa_length];
+            
+            NSLog(@"encrypt success_with hex: %@", self.resultRSA);
+        }
+    }
     
-    RSA *publicKey = RSA_new();
-    BIGNUM *modulus = BN_new();
-    BIGNUM *exponent = BN_new();
-    
-    NSString *mod = @"c109d8b86ee2c46965c399a70df07839fd9cb30c0dfef15c33fe06761349433208ce5c474b0fddf001c44ca6b25ac8e0f2470ea3d2b90a69b64cbb021b8ba7de4a02b6141f6c42c82be580d18d7932858ad963f1aea9e374b20846efbf472a0c8c9d5324030075a86a525744c63506e9084d2d3c0f8f0fa199c900ff17573a0b";
-    NSString *exp = @"010001";
-    
-    NSMutableString *hexMod = [mod mutableCopy];
-    NSMutableString *hexExp = [exp mutableCopy];
-    
-    BN_hex2bn(&modulus, [hexMod UTF8String]);
-    BN_hex2bn(&exponent, [hexExp UTF8String]);
-    
-    publicKey->n = modulus;
-    publicKey->e = exponent;
-    
-    return publicKey;
+    return self;
+}
+
++(RSAGenerateKey *)generateKey
+{
+    RSAGenerateKey *rsa = [[RSAGenerateKey alloc] init];
+    return rsa;
 }
 
 -(NSString *)hexWithData:(unsigned char *)data ofLength:(NSUInteger)len
@@ -62,37 +82,30 @@
     return tmp;
 }
 
-typedef void(^blockTest)(int a, int b);
-
-
--(NSString *)EncryptionWithRSA
+-(RSA *)GenKeyWithRSA
 {
-    RSAGenWithSecurity *akClass = [[RSAGenWithSecurity alloc] init];
-    NSString *plainText = [akClass ParseJWT];
-    const char *plain = [plainText UTF8String];
+    //    [RSA performRSADecryptionForData:@"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhayIsImRhdGEiOiJwMWNCb0VNeHBRY2N0cHhaTXBRYyIsImV4cCI6MTYxNzAwMTI3MiwiaWF0IjoxNjE3MDAwNjcyfQ.eG8U_PU5F20XyGfz0V-RFGqDkgexwQcsGH4tgSKWA4hSQ4oCM7p4Hiyj-o0ZpYyPHibvbrXxntHoT1DdcuTrWhmk3A8hC4VTcdYMPjekis_pgc6Sxmgbz-_6OXbtS2H5DRl-mHd3PbaVU1pNLg2tBMHeXYSZ-IuvmJW4Rz5qiNQ" andModulus:@"c109d8b86ee2c46965c399a70df07839fd9cb30c0dfef15c33fe06761349433208ce5c474b0fddf001c44ca6b25ac8e0f2470ea3d2b90a69b64cbb021b8ba7de4a02b6141f6c42c82be580d18d7932858ad963f1aea9e374b20846efbf472a0c8c9d5324030075a86a525744c63506e9084d2d3c0f8f0fa199c900ff17573a0b" andExponent:@"010001"];
     
-    RSA *publickey = [self GenKeyWithRSA];
+    RSA *publicKey = RSA_new();
+    BIGNUM *modulus = BN_new();
+    BIGNUM *exponent = BN_new();
     
-    int rsa_length = RSA_size(publickey);
-    unsigned char *crip[rsa_length];
+    NSString *mod = @"c109d8b86ee2c46965c399a70df07839fd9cb30c0dfef15c33fe06761349433208ce5c474b0fddf001c44ca6b25ac8e0f2470ea3d2b90a69b64cbb021b8ba7de4a02b6141f6c42c82be580d18d7932858ad963f1aea9e374b20846efbf472a0c8c9d5324030075a86a525744c63506e9084d2d3c0f8f0fa199c900ff17573a0b";
+    NSString *exp = @"010001";
     
-    NSString *result = [[NSString alloc] init];
+    NSMutableString *hexMod = [mod mutableCopy];
+    NSMutableString *hexExp = [exp mutableCopy];
     
-    int iRsaRet = RSA_public_encrypt(strlen(plain), (const unsigned char *)plain, (unsigned char *)crip, publickey, RSA_PKCS1_PADDING);
+    BN_hex2bn(&modulus, [hexMod UTF8String]);
+    BN_hex2bn(&exponent, [hexExp UTF8String]);
     
-    if(iRsaRet <= 0) {
-        NSLog(@"encrypt failed");
-        result = @"";
-    } else {
-//        NSData *data = [NSData dataWithBytes:(const char*)crip length:rsa_length];
-//        NSString *base64Encoded = [data base64EncodedStringWithOptions:0];
-        result = [self hexWithData:crip ofLength:rsa_length];
-        
-        NSLog(@"encrypt success_with hex: %@", result);
-    }
+    publicKey->n = modulus;
+    publicKey->e = exponent;
     
-    return result;
+    return publicKey;
 }
+
+//typedef void(^blockTest)(int a, int b);
 
 
 //-(NSString *)hexStringWithData:(unsigned char*)data ofLength:(NSUInteger)len

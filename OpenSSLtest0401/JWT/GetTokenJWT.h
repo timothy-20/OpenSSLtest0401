@@ -12,7 +12,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GetTokenJWT : NSObject
 
--(NSString *)XAuthToken;
++(GetTokenJWT *)XAuthToken;
+
+@property (nonatomic, strong) NSString *tokenResult;
 
 @end
 

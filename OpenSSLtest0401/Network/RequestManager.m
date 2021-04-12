@@ -8,26 +8,42 @@
 
 #import "RequestManager.h"
 
-#import "RequestHTTP.h"
+#import "ConnectionHTTP.h"
 #import "ResponseHTTP.h"
 
 @implementation RequestManager
 
--(void)sendRequestData
+//-(void)sendRequestData
+//{
+//    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+//
+//    NSLog(@"URL: %@", [[self.requestClass request] URL]);
+//    NSDictionary *headerField = [[self.requestClass request] allHTTPHeaderFields];
+//    NSLog(@"request Header: %@", headerField);
+//
+//    NSLog(@"%@", [self.requestClass testString]);
+//
+//    NSData *bodyField = [[self.requestClass request] HTTPBody];
+//    if(nil != bodyField) {
+//        NSString *bodyFieldString = [[NSString alloc] initWithData:bodyField encoding:NSUTF8StringEncoding];
+//        NSLog(@"request Body: %@", bodyFieldString);
+//    }
+//}
+
+-(void)log
 {
-    NSURLSession *urlSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    RequestHTTP *inRequest = [[RequestHTTP alloc] init];
+    NSURL *url =  inRequest.requestURL;
     
-    NSLog(@"URL: %@", [[self.requestClass request] URL]);
-    NSDictionary *headerField = [[self.requestClass request] allHTTPHeaderFields];
-    NSLog(@"request Header: %@", headerField);
+    RequestHTTP *request = [RequestHTTP requestWithURL:url];
     
-    NSLog(@"%@", [self.requestClass testString]);
+    NSLog(@"%@", request.request.URL);
+    NSLog(@"%@", request.request.allHTTPHeaderFields);
     
-    NSData *bodyField = [[self.requestClass request] HTTPBody];
-    if(nil != bodyField) {
-        NSString *bodyFieldString = [[NSString alloc] initWithData:bodyField encoding:NSUTF8StringEncoding];
-        NSLog(@"request Body: %@", bodyFieldString);
-    }
+
+//    NSLog(@"URL: %@", inRequest.request.URL);
+//    NSLog(@"dicHeaderData: %@", inRequest.request.allHTTPHeaderFields);
+//    NSLog(@"%@", inRequest.testString);
 }
 
 @end

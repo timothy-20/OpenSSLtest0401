@@ -34,7 +34,7 @@
 //    [JWT ParseJWT];
     
 //    [req requestAuth];
-    [reqManager sendRequestData];
+    [reqManager log];
     
 //    [RSA EncryptionWithRSA];
     

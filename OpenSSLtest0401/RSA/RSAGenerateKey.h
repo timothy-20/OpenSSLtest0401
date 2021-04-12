@@ -13,13 +13,11 @@
 #include <openssl/bn.h>
 #include <openssl/rsa.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
 @interface RSAGenerateKey : NSObject
 
+@property (nonatomic, strong) NSString* resultRSA;
+
++(RSAGenerateKey *)generateKey;
 -(RSA *)GenKeyWithRSA;
--(NSString *)EncryptionWithRSA;
 
 @end
-
-NS_ASSUME_NONNULL_END

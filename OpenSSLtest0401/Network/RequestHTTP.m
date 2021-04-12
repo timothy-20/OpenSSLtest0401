@@ -6,6 +6,8 @@
 //  Copyright © 2021 임정운. All rights reserved.
 //
 
+#import <UIKit/UIKit.h>
+
 #import "RequestHTTP.h"
 #import "RSAGenerateKey.h"
 #import "GetTokenJWT.h"
@@ -15,6 +17,7 @@
 -(void)dealloc
 {
     self.request = nil;
+    self.requestURL = nil;
     self.testString = nil;
 }
 
@@ -39,51 +42,48 @@
     self = [super init];
     
     if(self) {
+//        RSAGenerateKey *rsa = [RSAGenerateKey generateKey];
+        
+        RSAGenerateKey *rsa2 = [[RSAGenerateKey alloc] init];
+        
+        self.requestURL = [[NSURL alloc] initWithString:MAKE_URL([rsa2 resultRSA])];
+        
         self.request = [[NSMutableURLRequest alloc] initWithURL:inURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15.0];
         self.testString = [[NSString alloc] initWithFormat:@"test string"];
         
-        NSString *urlString = [NSString stringWithFormat:@"%@", MAKE_URL([self.mPathKey EncryptionWithRSA])];
-        NSLog(@"%@", urlString);
+        NSString *urlString = [NSString stringWithFormat:@"%@", MAKE_URL([rsa2 resultRSA])];
         
         self.request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [self.request setHTTPMethod:HTTP_METHOD_GET];
-        [self.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+        [self.request setValue:[NSString stringWithFormat:@"application/json"] forHTTPHeaderField:@"Content-Type"];
         [self.request setValue:[NSString stringWithFormat:@"Basic %@", credential] forHTTPHeaderField:@"Authorization"];
         
+        GetTokenJWT *xTokenClass = [[GetTokenJWT alloc] init];
         
+        [self.request setValue:[NSString stringWithFormat:@"%@", xTokenClass.tokenResult] forHTTPHeaderField:@"X-AUTH-TOKEN"];
         
     }
     
     return self;
 }
 
-
--(void)requestAuth
++(RequestHTTP *)requestWithURL:(NSURL *)inURL
 {
-    RSAGenerateKey *mPathAK = [[RSAGenerateKey alloc] init];
-    NSString *activationKey = [mPathAK EncryptionWithRSA];
+    RequestHTTP *request = [[RequestHTTP alloc] initWithURL:inURL];
     
-    NSString *urlStr = [NSString stringWithFormat:@"%@", MAKE_URL(activationKey)];
-    NSLog(@"%@", urlStr);
-    
-    NSURL *url = [NSURL URLWithString: urlStr];
-    self.request = [NSMutableURLRequest requestWithURL:url];
-    
-    [self.request setHTTPMethod:HTTP_METHOD_GET];
-    
-    [self.request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-    [self.request setValue:[NSString stringWithFormat:@"Basic %@", credential] forHTTPHeaderField:@"Authorization"];
-    
-    GetTokenJWT *xTokenClass = [[GetTokenJWT alloc] init];
-    NSString *xToken = [xTokenClass XAuthToken];
-    
-    [self.request setValue:xToken forHTTPHeaderField:@"X-AUTH-TOKEN"];
-    
-//    HTTP Request Header
-    
+    return request;
+}
+
+-(void)requestBody
+{
     NSMutableDictionary *jsonBody = [[NSMutableDictionary alloc] init];
-    [jsonBody setObject:@"test" forKey:@"key1"];
-    [jsonBody setObject:@"test" forKey:@"key2"];
+    [jsonBody setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].identifierForVendor.UUIDString] forKey:@"deviceId"];
+    [jsonBody setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name] forKey:@"deviceName"];
+    [jsonBody setObject:[NSString stringWithFormat:@"ios"] forKey:@"os"];
+    [jsonBody setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].systemVersion] forKey:@"osVersion"];
+    [jsonBody setObject:[NSString stringWithFormat:@"%@"] forKey:@"appVersion"];
+    [jsonBody setObject:@"" forKey:@"token"];
+    //json에는 클라이언트 기기 정보가 들어가야 한다.
     
     NSMutableData *body = [[NSMutableData alloc] init];
     [body appendData:[[RequestHTTP dictionaryToJson:jsonBody] dataUsingEncoding:NSUTF8StringEncoding]];

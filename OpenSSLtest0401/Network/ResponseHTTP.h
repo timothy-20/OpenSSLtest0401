@@ -11,19 +11,29 @@
 @class RequestHTTP;
 @class ResponseHTTP;
 
-NS_ASSUME_NONNULL_BEGIN
+typedef NS_ENUM(int, netResponseType) {
+    typeSuccesss,
+    typeFail,
+    typeError,
+    typeNoData
+};
+
+typedef void(^networkResponseBlock)(ResponseHTTP *response, netResponseType status);
 
 @interface ResponseHTTP : NSObject
 
 @property (nonatomic, strong) RequestHTTP *requestURL;
 
--(NSDictionary *)headerResponse;
--(NSDictionary *)responseAuth;
-
 @property (nonatomic, strong) NSHTTPURLResponse *responseURL;
 @property (nonatomic, strong) NSMutableData *responseData;
+@property (nonatomic, strong) NSMutableDictionary *responseDic;
+@property (nonatomic, strong) networkResponseBlock blockResponse;
 @property (nonatomic, strong) NSError *error;
 
-@end
+-(NSDictionary *)headerResponse;
+-(NSMutableDictionary *)responseAuth;
+-(int)statusCode;
 
-NS_ASSUME_NONNULL_END
+-(void)addResponseData:(NSData *)addData;
+
+@end

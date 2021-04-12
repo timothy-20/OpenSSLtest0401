@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define SERVER_URL @"https://10.10.20.51:9443/provision/validation/"
+#define SERVER_URL @"https://10.10.20.51:9443/test/validation/"
 #define MAKE_URL(API) ([NSString stringWithFormat:@"%@%@",SERVER_URL ,API])
 
 #define credential @"NjAxMmRkZGNjN2U5Yjg5NzU1OTBmOTFlOGVmZmMwNDZlOGU5YWFhYzoyZjljNjJjYzI1OGJhODQ3MGFkNGExNGI1YmQ1MDYyYTQzM2FhNTNj"
@@ -18,14 +18,16 @@
 
 typedef NSString *netRequestMethod;
 
-@class RSAGenerateKey;
-
 @interface RequestHTTP : NSObject
--(void)requestAuth;
 
 @property (nonatomic, strong) NSMutableURLRequest *request;
 @property (nonatomic, strong) NSString *testString;
+@property (nonatomic, strong) NSURL *requestURL;
 
-@property (nonatomic, strong) RSAGenerateKey *mPathKey;
+//@property (nonatomic, strong) RSAGenerateKey *mPathKey;
+//@property (nonatomic, strong) GetTokenJWT *xTokenClass;
+
+-(void)requestBody;
++(RequestHTTP *)requestWithURL:(NSURL *)inURL;
 
 @end

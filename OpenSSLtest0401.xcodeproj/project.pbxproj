@@ -22,6 +22,7 @@
 		99D30DDC261D9BD200C233FC /* GetTokenJWT.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DDB261D9BD200C233FC /* GetTokenJWT.m */; };
 		99D30DDF261E906500C233FC /* GeneratePem.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DDE261E906500C233FC /* GeneratePem.m */; };
 		99D30DE5261FEFF800C233FC /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DE4261FEFF800C233FC /* RequestManager.m */; };
+		99D30DE82623E55100C233FC /* ConnectionHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DE72623E55100C233FC /* ConnectionHTTP.m */; };
 		F59689CD330D79B31FCF20C7 /* libPods-OpenSSLtest0401.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7125BB2C1A568B7CB205FA /* libPods-OpenSSLtest0401.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		99D30DDE261E906500C233FC /* GeneratePem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GeneratePem.m; sourceTree = "<group>"; };
 		99D30DE3261FEFF800C233FC /* RequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
 		99D30DE4261FEFF800C233FC /* RequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestManager.m; sourceTree = "<group>"; };
+		99D30DE62623E55100C233FC /* ConnectionHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionHTTP.h; sourceTree = "<group>"; };
+		99D30DE72623E55100C233FC /* ConnectionHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionHTTP.m; sourceTree = "<group>"; };
 		FBC5209F42C17B14363C6059 /* Pods-OpenSSLtest0401.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSSLtest0401.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSSLtest0401/Pods-OpenSSLtest0401.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +143,8 @@
 				99D30DCF261C2B5800C233FC /* ResponseHTTP.m */,
 				99D30DE3261FEFF800C233FC /* RequestManager.h */,
 				99D30DE4261FEFF800C233FC /* RequestManager.m */,
+				99D30DE62623E55100C233FC /* ConnectionHTTP.h */,
+				99D30DE72623E55100C233FC /* ConnectionHTTP.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				9941C29C2615B16900C06BF0 /* ViewController.m in Sources */,
 				9941C2962615B16900C06BF0 /* AppDelegate.m in Sources */,
 				99D30DE5261FEFF800C233FC /* RequestManager.m in Sources */,
+				99D30DE82623E55100C233FC /* ConnectionHTTP.m in Sources */,
 				99D30DDF261E906500C233FC /* GeneratePem.m in Sources */,
 				9941C2B02615B6A200C06BF0 /* RSAGenerateKey.m in Sources */,
 				9941C2B3261ADD9100C06BF0 /* RSAGenWithSecurity.m in Sources */,

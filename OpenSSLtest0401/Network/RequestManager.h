@@ -8,16 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class RequestHTTP;
-@class ResponseHTTP;
+#import "RequestHTTP.h"
+#import "ResponseHTTP.h"
 
 @interface RequestManager : NSObject
 
 @property (nonatomic, strong) NSMutableArray *arrRequest;
 
-@property (nonatomic, strong) RequestHTTP *requestClass;
-@property (nonatomic, strong) ResponseHTTP *responseClass;
-
--(void)sendRequestData;
+-(void)log;
 
 @end

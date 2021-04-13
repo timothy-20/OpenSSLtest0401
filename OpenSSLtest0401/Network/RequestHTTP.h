@@ -30,5 +30,6 @@ typedef NSString *netRequestMethod;
 -(void)requestBody;
 +(RequestHTTP *)requestWithURL:(NSURL *)inURL;
 +(NSString *)dictionaryToJson:(NSDictionary *)dic;
+-(id)getRequestValue;
 
 @end

@@ -40,13 +40,15 @@
 //    NSLog(@"%@", requestWithURL.request.URL);
 //    NSLog(@"%@", requestWithURL.request.allHTTPHeaderFields);
     
-    [inRequest requestBody];
     
-    if (requestWithURL.request.HTTPBody == nil) {
+    
+    if (requestWithURL.requestBodyData == nil) {
         NSLog(@"jsonBody data is nil");
     } else {
+        [requestWithURL requestBody];
+        
         NSError *error;
-        NSData *jsonBodyData = [NSJSONSerialization dataWithJSONObject:requestWithURL.request.HTTPBody options:NSJSONWritingPrettyPrinted error:&error];
+        NSData *jsonBodyData = [NSJSONSerialization dataWithJSONObject:requestWithURL.requestBodyData options:NSJSONWritingPrettyPrinted error:&error];
         NSString *jsonBodyStr = [[NSString alloc] initWithData:jsonBodyData encoding:NSUTF8StringEncoding];
         
         NSLog(@"%@", jsonBodyStr);

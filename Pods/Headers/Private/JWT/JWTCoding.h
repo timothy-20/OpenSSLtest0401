@@ -1,1 +1,1 @@
-../../../JWT/Classes/Coding/JWTCoding.h
+../../../JWT/Core/Coding/JWTCoding.h

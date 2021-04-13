@@ -1,1 +1,1 @@
-../../../JWT/Classes/Supplement/JWTDeprecations.h
+../../../JWT/Core/Supplement/JWTDeprecations.h

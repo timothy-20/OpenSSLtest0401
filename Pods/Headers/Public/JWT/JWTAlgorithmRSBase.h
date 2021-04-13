@@ -1,1 +1,1 @@
-../../../JWT/Classes/Algorithms/RSFamily/JWTAlgorithmRSBase.h
+../../../JWT/Core/Algorithms/RSFamily/JWTAlgorithmRSBase.h

@@ -1,1 +1,1 @@
-../../../JWT/Classes/Algorithms/Base/JWTAlgorithmNone.h
+../../../JWT/Core/Algorithms/Base/JWTAlgorithmNone.h

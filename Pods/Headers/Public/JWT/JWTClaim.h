@@ -1,1 +1,1 @@
-../../../JWT/Classes/ClaimSet/JWTClaim.h
+../../../JWT/Core/ClaimSet/JWTClaim.h

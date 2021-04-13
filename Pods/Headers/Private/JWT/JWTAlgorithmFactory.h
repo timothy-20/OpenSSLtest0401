@@ -1,1 +1,1 @@
-../../../JWT/Classes/Algorithms/Base/JWTAlgorithmFactory.h
+../../../JWT/Core/Algorithms/Base/JWTAlgorithmFactory.h

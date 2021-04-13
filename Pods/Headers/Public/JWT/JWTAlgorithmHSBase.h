@@ -1,1 +1,1 @@
-../../../JWT/Classes/Algorithms/HSFamily/JWTAlgorithmHSBase.h
+../../../JWT/Core/Algorithms/HSFamily/JWTAlgorithmHSBase.h

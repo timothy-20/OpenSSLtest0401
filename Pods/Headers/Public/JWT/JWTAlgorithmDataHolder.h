@@ -1,1 +1,1 @@
-../../../JWT/Classes/Algorithms/Holders/JWTAlgorithmDataHolder.h
+../../../JWT/Core/Algorithms/Holders/JWTAlgorithmDataHolder.h

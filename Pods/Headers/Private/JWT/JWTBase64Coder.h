@@ -1,1 +1,1 @@
-../../../JWT/Classes/Supplement/JWTBase64Coder.h
+../../../JWT/Core/Supplement/JWTBase64Coder.h

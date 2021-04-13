@@ -1,1 +1,1 @@
-../../../JWT/Classes/JWT.h
+../../../JWT/Core/FrameworkSupplement/JWT.h

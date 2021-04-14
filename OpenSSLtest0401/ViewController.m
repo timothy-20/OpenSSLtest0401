@@ -29,7 +29,6 @@
     NSLog(@"akData: %@", [response akData]);
     NSLog(@"modulusData: %@", [response publicKeyModulus]);
     NSLog(@"exponentData: %@", [response publicKeyExponent]);
-    
 }
 
 

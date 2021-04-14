@@ -11,6 +11,8 @@
 #import "TokenParser.h"
 #import "JWTTokenFactory.h"
 
+#import <UIKit/UIKit.h>
+
 @implementation NetworkRequestHTTP
 
 -(void)dealloc
@@ -28,12 +30,33 @@
         TokenParser *ak = [TokenParser sendActivationKey];
         NSString *parsedAK = ak.activationKey;
         
-        JWTTokenFactory *token = [JWTTokenFactory sendXAuthToken:@"" inSubject:@"" inPlainData:parsedAK];
+        JWTTokenFactory *token = [JWTTokenFactory sendXAuthToken:TOKEN_SECRET inSubject:@"ak" inPlainData:parsedAK];
         NSString *xTokenAuth = [token requestToken];
+        
+        self.urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15.0];
+        
+        [self.urlRequest setHTTPMethod:HTTP_METHOD_POST];
+        [self.urlRequest setValue:[NSString stringWithFormat:@"application/json"] forKey:@"Content-Type"];
+        [self.urlRequest setValue:[NSString stringWithFormat:@"Basic %@", BASIC_AUTH] forKey:@"Authorization"];
+
         
     }
     
     return self;
+}
+
+-(void)sendDeviceInfo
+{
+    NSMutableDictionary *deviceInfo = [NSMutableDictionary dictionary];
+    
+    [deviceInfo setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].identifierForVendor.UUIDString] forKey:@"deviceId"];
+    [deviceInfo setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name] forKey:@"deviceName"];
+    [deviceInfo setObject:[NSString stringWithFormat:@"ios"] forKey:@"os"];
+    [deviceInfo setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].systemVersion] forKey:@"osVersion"];
+    [deviceInfo setObject:[NSString stringWithFormat:@"%@", [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"]] forKey:@"appVersion"];
+    [deviceInfo setObject:[NSString stringWithFormat:@"null"] forKey:@"token"];
+    
+    
 }
 
 @end

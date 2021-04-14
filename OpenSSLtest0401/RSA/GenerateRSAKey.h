@@ -12,6 +12,6 @@
 
 @property (nonatomic, strong) NSString *publicKeyRSA;
 
-+(GenerateRSAKey *)sendPublicKey:(NSString *)tokenStr inModulus:(NSString *)mod inExponent:(NSString *)exp;
++(GenerateRSAKey *)sendPublicKey;
 
 @end

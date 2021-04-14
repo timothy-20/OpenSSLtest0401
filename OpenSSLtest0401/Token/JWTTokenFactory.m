@@ -33,8 +33,6 @@
             [NSString stringWithFormat:@"data"]:[NSString stringWithString:plainData]
         };
         
-        //plainData에는 느낌상 기기정보가 담기 jsonData가 담겨있을 것 같다.(NSData)
-        
         NSDate *currentDate = [NSDate date];
         NSDate *expirationDate = [NSDate distantPast];
         

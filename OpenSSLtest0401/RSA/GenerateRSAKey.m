@@ -8,6 +8,7 @@
 
 #import "GenerateRSAKey.h"
 #import "TokenParser.h"
+#import "NetworkResponseHTTP.h"
 
 #import <openssl/rsa.h>
 #import <openssl/evp.h>
@@ -48,12 +49,14 @@
     return self;
 }
 
-+(GenerateRSAKey *)sendPublicKey:(NSString *)mod inExponent:(NSString *)exp
++(GenerateRSAKey *)sendPublicKey
 {
+    NetworkResponseHTTP *response = [[NetworkResponseHTTP alloc] init];
+    
     TokenParser *token = [TokenParser sendActivationKey];
     NSString *activationKey = token.activationKey;
     
-    return [[GenerateRSAKey alloc] initWithActivationKey:activationKey inModulus:mod inExponent:exp];
+    return [[GenerateRSAKey alloc] initWithActivationKey:activationKey inModulus:[response publicKeyModulus] inExponent:[response publicKeyExponent]];
 }
 
 -(NSString *)hexWithData:(unsigned char *)data ofLength:(NSUInteger)length

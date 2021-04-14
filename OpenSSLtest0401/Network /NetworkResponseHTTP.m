@@ -27,12 +27,7 @@
     if (self) {
         NSString *receiveURL = [NSString stringWithFormat:@"%@", URL_PARAMETER];
         NSArray *segment = [receiveURL componentsSeparatedByString:@"?"];
-        
         NSArray *parameters = [segment[1] componentsSeparatedByString:@"&"];
-
-//        NSArray *akDataPairs = [parameters[0] componentsSeparatedByString:@":"];
-//        NSArray *modDataPairs = [parameters[1] componentsSeparatedByString:@":"];
-
         NSMutableDictionary *paramsDataDic = [NSMutableDictionary dictionary];
         
         for (int i = 0; i < parameters.count; i++) {

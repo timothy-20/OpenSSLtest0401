@@ -19,7 +19,7 @@
     self.requestToken = nil;
 }
 
--(id)initWithPublicKey:(NSString *)publicKey inSub:(NSString *)sub inPlainData:(NSString *)plainData
+-(id)initWithPublicKey:(NSString *)publicKey inSubject:(NSString *)sub inPlainData:(NSString *)plainData
 {
     self = [super init];
     
@@ -60,9 +60,9 @@
     return self;
 }
 
-+(JWTTokenFactory *)sendXAuthToken:(NSString *)publicKey inSub:(NSString *)sub inPlainData:(NSString *)plainData
++(JWTTokenFactory *)sendXAuthToken:(NSString *)publicKey inSubject:(NSString *)sub inPlainData:(NSString *)plainData
 {
-    return [[JWTTokenFactory alloc] initWithPublicKey:publicKey inSub:sub inPlainData:plainData];
+    return [[JWTTokenFactory alloc] initWithPublicKey:publicKey inSubject:sub inPlainData:plainData];
 }
 
 @end

@@ -21,6 +21,9 @@
 		99D30DEF26252AD200C233FC /* GenerateRSAKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DEE26252AD200C233FC /* GenerateRSAKey.m */; };
 		99D30DF226252B6400C233FC /* TokenParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DF126252B6400C233FC /* TokenParser.m */; };
 		99D30DF526252BDD00C233FC /* JWTTokenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DF426252BDD00C233FC /* JWTTokenFactory.m */; };
+		99D30DF8262583ED00C233FC /* NetworkRequestHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DF7262583ED00C233FC /* NetworkRequestHTTP.m */; };
+		99D30DFB262583FE00C233FC /* NetworkResponseHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DFA262583FE00C233FC /* NetworkResponseHTTP.m */; };
+		99D30E012625844E00C233FC /* NetworkManagerHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30E002625844E00C233FC /* NetworkManagerHTTP.m */; };
 		F59689CD330D79B31FCF20C7 /* libPods-OpenSSLtest0401.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7125BB2C1A568B7CB205FA /* libPods-OpenSSLtest0401.a */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +56,12 @@
 		99D30DF126252B6400C233FC /* TokenParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TokenParser.m; sourceTree = "<group>"; };
 		99D30DF326252BDD00C233FC /* JWTTokenFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JWTTokenFactory.h; sourceTree = "<group>"; };
 		99D30DF426252BDD00C233FC /* JWTTokenFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JWTTokenFactory.m; sourceTree = "<group>"; };
+		99D30DF6262583ED00C233FC /* NetworkRequestHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkRequestHTTP.h; sourceTree = "<group>"; };
+		99D30DF7262583ED00C233FC /* NetworkRequestHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkRequestHTTP.m; sourceTree = "<group>"; };
+		99D30DF9262583FE00C233FC /* NetworkResponseHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkResponseHTTP.h; sourceTree = "<group>"; };
+		99D30DFA262583FE00C233FC /* NetworkResponseHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkResponseHTTP.m; sourceTree = "<group>"; };
+		99D30DFF2625844E00C233FC /* NetworkManagerHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManagerHTTP.h; sourceTree = "<group>"; };
+		99D30E002625844E00C233FC /* NetworkManagerHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManagerHTTP.m; sourceTree = "<group>"; };
 		FBC5209F42C17B14363C6059 /* Pods-OpenSSLtest0401.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSSLtest0401.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSSLtest0401/Pods-OpenSSLtest0401.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +152,12 @@
 		99D30DEA262529AC00C233FC /* Network  */ = {
 			isa = PBXGroup;
 			children = (
+				99D30DF6262583ED00C233FC /* NetworkRequestHTTP.h */,
+				99D30DF7262583ED00C233FC /* NetworkRequestHTTP.m */,
+				99D30DF9262583FE00C233FC /* NetworkResponseHTTP.h */,
+				99D30DFA262583FE00C233FC /* NetworkResponseHTTP.m */,
+				99D30DFF2625844E00C233FC /* NetworkManagerHTTP.h */,
+				99D30E002625844E00C233FC /* NetworkManagerHTTP.m */,
 			);
 			path = "Network ";
 			sourceTree = "<group>";
@@ -273,11 +288,14 @@
 			files = (
 				99D30DD0261C2B5800C233FC /* ResponseHTTP.m in Sources */,
 				9941C29C2615B16900C06BF0 /* ViewController.m in Sources */,
+				99D30DF8262583ED00C233FC /* NetworkRequestHTTP.m in Sources */,
 				9941C2962615B16900C06BF0 /* AppDelegate.m in Sources */,
+				99D30E012625844E00C233FC /* NetworkManagerHTTP.m in Sources */,
 				99D30DE5261FEFF800C233FC /* RequestManager.m in Sources */,
 				99D30DE82623E55100C233FC /* ConnectionHTTP.m in Sources */,
 				9941C2A72615B16E00C06BF0 /* main.m in Sources */,
 				99D30DF226252B6400C233FC /* TokenParser.m in Sources */,
+				99D30DFB262583FE00C233FC /* NetworkResponseHTTP.m in Sources */,
 				99D30DF526252BDD00C233FC /* JWTTokenFactory.m in Sources */,
 				99D30DCD261C2B3D00C233FC /* RequestHTTP.m in Sources */,
 				9941C2992615B16900C06BF0 /* SceneDelegate.m in Sources */,

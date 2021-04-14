@@ -7,6 +7,7 @@
 //
 
 #import "TokenParser.h"
+#import "NetworkResponseHTTP.h"
 
 @implementation TokenParser
 
@@ -46,9 +47,11 @@
     return self;
 }
 
-+(TokenParser *)sendActivationKey:(NSString *)tokenStr
++(TokenParser *)sendActivationKey
 {
-    return [[TokenParser alloc] initWithToken:tokenStr];
+    NetworkResponseHTTP *receiveParam = [[NetworkResponseHTTP alloc] init];
+    
+    return [[TokenParser alloc] initWithToken:[receiveParam akData]];
 }
 
 @end

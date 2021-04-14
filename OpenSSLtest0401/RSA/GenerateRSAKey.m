@@ -32,6 +32,8 @@
         int iRsaLength = RSA_size(publicKey);
         unsigned char *crip[iRsaLength];
         
+        self.publicKeyRSA = [[NSString alloc] init];
+        
         int iRsaReturn = RSA_public_encrypt((int)strlen(activationKey), (const unsigned char *)activationKey, (unsigned char *)crip, publicKey, RSA_PKCS1_PADDING);
         
         if(iRsaReturn <= 0) {
@@ -46,9 +48,9 @@
     return self;
 }
 
-+(GenerateRSAKey *)sendPublicKey:(NSString *)tokenStr inModulus:(NSString *)mod inExponent:(NSString *)exp
++(GenerateRSAKey *)sendPublicKey:(NSString *)mod inExponent:(NSString *)exp
 {
-    TokenParser *token = [TokenParser sendActivationKey:tokenStr];
+    TokenParser *token = [TokenParser sendActivationKey];
     NSString *activationKey = token.activationKey;
     
     return [[GenerateRSAKey alloc] initWithActivationKey:activationKey inModulus:mod inExponent:exp];

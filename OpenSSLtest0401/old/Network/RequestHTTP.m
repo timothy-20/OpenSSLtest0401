@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import "RequestHTTP.h"
-#import "RSAGenerateKey.h"
-#import "GetTokenJWT.h"
+//#import "RSAGenerateKey.h"
+//#import "GetTokenJWT.h"
 
 @implementation RequestHTTP
 
@@ -45,22 +45,22 @@
         self.requestBodyData = [[NSMutableDictionary alloc] init];
         
 //        RSAGenerateKey *rsa = [RSAGenerateKey generateKey];
-        RSAGenerateKey *rsa2 = [[RSAGenerateKey alloc] init];
+//        RSAGenerateKey *rsa2 = [[RSAGenerateKey alloc] init];
         
-        self.requestURL = [[NSURL alloc] initWithString:MAKE_URL([rsa2 resultRSA])];
+//        self.requestURL = [[NSURL alloc] initWithString:MAKE_URL([rsa2 resultRSA])];
         
         self.request = [[NSMutableURLRequest alloc] initWithURL:inURL cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15.0];
         
-        NSString *urlString = [NSString stringWithFormat:@"%@", MAKE_URL([rsa2 resultRSA])];
+//        NSString *urlString = [NSString stringWithFormat:@"%@", MAKE_URL([rsa2 resultRSA])];
         
-        self.request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+//        self.request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
         [self.request setHTTPMethod:HTTP_METHOD_GET];
         [self.request setValue:[NSString stringWithFormat:@"application/json"] forHTTPHeaderField:@"Content-Type"];
         [self.request setValue:[NSString stringWithFormat:@"Basic %@", credential] forHTTPHeaderField:@"Authorization"];
         
-        GetTokenJWT *xTokenClass = [[GetTokenJWT alloc] init];
+//        GetTokenJWT *xTokenClass = [[GetTokenJWT alloc] init];
         
-        [self.request setValue:[NSString stringWithFormat:@"%@", xTokenClass.tokenResult] forHTTPHeaderField:@"X-AUTH-TOKEN"];
+//        [self.request setValue:[NSString stringWithFormat:@"%@", xTokenClass.tokenResult] forHTTPHeaderField:@"X-AUTH-TOKEN"];
         
     }
     

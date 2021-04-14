@@ -11,4 +11,6 @@
 @interface JWTTokenFactory : NSObject
 @property (nonatomic, strong) NSString *requestToken;
 
++(JWTTokenFactory *)sendXAuthToken:(NSString *)publicKey inSubject:(NSString *)sub inPlainData:(NSString *)plainData;
+
 @end

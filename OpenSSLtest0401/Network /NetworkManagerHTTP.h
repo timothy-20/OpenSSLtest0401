@@ -1,5 +1,5 @@
 //
-//  TokenParser.h
+//  NetworkManagerHTTP.h
 //  OpenSSLtest0401
 //
 //  Created by 임정운 on 2021/04/13.
@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface TokenParser : NSObject
-@property (nonatomic, strong) NSString *activationKey;
-
-+(TokenParser *)sendActivationKey;
+@interface NetworkManagerHTTP : NSObject
 
 @end

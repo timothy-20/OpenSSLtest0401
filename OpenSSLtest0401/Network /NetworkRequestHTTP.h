@@ -24,4 +24,7 @@
 @property (nonatomic, strong) NSString *requestID;
 @property (nonatomic, strong) NSMutableURLRequest *urlRequest;
 
++(NetworkRequestHTTP *)requestWithURL:(NSURL *)url;
+-(void)requestBody;
+
 @end

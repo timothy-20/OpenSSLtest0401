@@ -14,16 +14,14 @@
 		9941C2A12615B16E00C06BF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9941C2A02615B16E00C06BF0 /* Assets.xcassets */; };
 		9941C2A42615B16E00C06BF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9941C2A22615B16E00C06BF0 /* LaunchScreen.storyboard */; };
 		9941C2A72615B16E00C06BF0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9941C2A62615B16E00C06BF0 /* main.m */; };
-		99D30DCD261C2B3D00C233FC /* RequestHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DCC261C2B3D00C233FC /* RequestHTTP.m */; };
-		99D30DD0261C2B5800C233FC /* ResponseHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DCF261C2B5800C233FC /* ResponseHTTP.m */; };
-		99D30DE5261FEFF800C233FC /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DE4261FEFF800C233FC /* RequestManager.m */; };
-		99D30DE82623E55100C233FC /* ConnectionHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DE72623E55100C233FC /* ConnectionHTTP.m */; };
 		99D30DEF26252AD200C233FC /* GenerateRSAKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DEE26252AD200C233FC /* GenerateRSAKey.m */; };
 		99D30DF226252B6400C233FC /* TokenParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DF126252B6400C233FC /* TokenParser.m */; };
 		99D30DF526252BDD00C233FC /* JWTTokenFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DF426252BDD00C233FC /* JWTTokenFactory.m */; };
 		99D30DF8262583ED00C233FC /* NetworkRequestHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DF7262583ED00C233FC /* NetworkRequestHTTP.m */; };
 		99D30DFB262583FE00C233FC /* NetworkResponseHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30DFA262583FE00C233FC /* NetworkResponseHTTP.m */; };
 		99D30E012625844E00C233FC /* NetworkManagerHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30E002625844E00C233FC /* NetworkManagerHTTP.m */; };
+		99D30E042626C7AF00C233FC /* NetworkCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30E032626C7AE00C233FC /* NetworkCommon.m */; };
+		99D30E072626D6A300C233FC /* NetworkConnectionHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30E062626D6A300C233FC /* NetworkConnectionHTTP.m */; };
 		F59689CD330D79B31FCF20C7 /* libPods-OpenSSLtest0401.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7125BB2C1A568B7CB205FA /* libPods-OpenSSLtest0401.a */; };
 /* End PBXBuildFile section */
 
@@ -42,14 +40,6 @@
 		9941C2A32615B16E00C06BF0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9941C2A52615B16E00C06BF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9941C2A62615B16E00C06BF0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		99D30DCB261C2B3D00C233FC /* RequestHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestHTTP.h; sourceTree = "<group>"; };
-		99D30DCC261C2B3D00C233FC /* RequestHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestHTTP.m; sourceTree = "<group>"; };
-		99D30DCE261C2B5800C233FC /* ResponseHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResponseHTTP.h; sourceTree = "<group>"; };
-		99D30DCF261C2B5800C233FC /* ResponseHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResponseHTTP.m; sourceTree = "<group>"; };
-		99D30DE3261FEFF800C233FC /* RequestManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
-		99D30DE4261FEFF800C233FC /* RequestManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RequestManager.m; sourceTree = "<group>"; };
-		99D30DE62623E55100C233FC /* ConnectionHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConnectionHTTP.h; sourceTree = "<group>"; };
-		99D30DE72623E55100C233FC /* ConnectionHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConnectionHTTP.m; sourceTree = "<group>"; };
 		99D30DED26252AD200C233FC /* GenerateRSAKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenerateRSAKey.h; sourceTree = "<group>"; };
 		99D30DEE26252AD200C233FC /* GenerateRSAKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenerateRSAKey.m; sourceTree = "<group>"; };
 		99D30DF026252B6400C233FC /* TokenParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TokenParser.h; sourceTree = "<group>"; };
@@ -62,6 +52,10 @@
 		99D30DFA262583FE00C233FC /* NetworkResponseHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkResponseHTTP.m; sourceTree = "<group>"; };
 		99D30DFF2625844E00C233FC /* NetworkManagerHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkManagerHTTP.h; sourceTree = "<group>"; };
 		99D30E002625844E00C233FC /* NetworkManagerHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkManagerHTTP.m; sourceTree = "<group>"; };
+		99D30E022626C7AE00C233FC /* NetworkCommon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkCommon.h; sourceTree = "<group>"; };
+		99D30E032626C7AE00C233FC /* NetworkCommon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkCommon.m; sourceTree = "<group>"; };
+		99D30E052626D6A300C233FC /* NetworkConnectionHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkConnectionHTTP.h; sourceTree = "<group>"; };
+		99D30E062626D6A300C233FC /* NetworkConnectionHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkConnectionHTTP.m; sourceTree = "<group>"; };
 		FBC5209F42C17B14363C6059 /* Pods-OpenSSLtest0401.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSSLtest0401.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSSLtest0401/Pods-OpenSSLtest0401.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +104,6 @@
 				99D30DEC262529FE00C233FC /* RSA */,
 				99D30DEB262529F800C233FC /* Token */,
 				99D30DEA262529AC00C233FC /* Network  */,
-				99D30DE92625290900C233FC /* old */,
 				9941C2942615B16900C06BF0 /* AppDelegate.h */,
 				9941C2952615B16900C06BF0 /* AppDelegate.m */,
 				9941C2972615B16900C06BF0 /* SceneDelegate.h */,
@@ -126,29 +119,6 @@
 			path = OpenSSLtest0401;
 			sourceTree = "<group>";
 		};
-		99D30DCA261C299700C233FC /* Network */ = {
-			isa = PBXGroup;
-			children = (
-				99D30DCB261C2B3D00C233FC /* RequestHTTP.h */,
-				99D30DCC261C2B3D00C233FC /* RequestHTTP.m */,
-				99D30DCE261C2B5800C233FC /* ResponseHTTP.h */,
-				99D30DCF261C2B5800C233FC /* ResponseHTTP.m */,
-				99D30DE3261FEFF800C233FC /* RequestManager.h */,
-				99D30DE4261FEFF800C233FC /* RequestManager.m */,
-				99D30DE62623E55100C233FC /* ConnectionHTTP.h */,
-				99D30DE72623E55100C233FC /* ConnectionHTTP.m */,
-			);
-			path = Network;
-			sourceTree = "<group>";
-		};
-		99D30DE92625290900C233FC /* old */ = {
-			isa = PBXGroup;
-			children = (
-				99D30DCA261C299700C233FC /* Network */,
-			);
-			path = old;
-			sourceTree = "<group>";
-		};
 		99D30DEA262529AC00C233FC /* Network  */ = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +128,10 @@
 				99D30DFA262583FE00C233FC /* NetworkResponseHTTP.m */,
 				99D30DFF2625844E00C233FC /* NetworkManagerHTTP.h */,
 				99D30E002625844E00C233FC /* NetworkManagerHTTP.m */,
+				99D30E022626C7AE00C233FC /* NetworkCommon.h */,
+				99D30E032626C7AE00C233FC /* NetworkCommon.m */,
+				99D30E052626D6A300C233FC /* NetworkConnectionHTTP.h */,
+				99D30E062626D6A300C233FC /* NetworkConnectionHTTP.m */,
 			);
 			path = "Network ";
 			sourceTree = "<group>";
@@ -286,18 +260,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				99D30DD0261C2B5800C233FC /* ResponseHTTP.m in Sources */,
+				99D30E042626C7AF00C233FC /* NetworkCommon.m in Sources */,
 				9941C29C2615B16900C06BF0 /* ViewController.m in Sources */,
 				99D30DF8262583ED00C233FC /* NetworkRequestHTTP.m in Sources */,
 				9941C2962615B16900C06BF0 /* AppDelegate.m in Sources */,
+				99D30E072626D6A300C233FC /* NetworkConnectionHTTP.m in Sources */,
 				99D30E012625844E00C233FC /* NetworkManagerHTTP.m in Sources */,
-				99D30DE5261FEFF800C233FC /* RequestManager.m in Sources */,
-				99D30DE82623E55100C233FC /* ConnectionHTTP.m in Sources */,
 				9941C2A72615B16E00C06BF0 /* main.m in Sources */,
 				99D30DF226252B6400C233FC /* TokenParser.m in Sources */,
 				99D30DFB262583FE00C233FC /* NetworkResponseHTTP.m in Sources */,
 				99D30DF526252BDD00C233FC /* JWTTokenFactory.m in Sources */,
-				99D30DCD261C2B3D00C233FC /* RequestHTTP.m in Sources */,
 				9941C2992615B16900C06BF0 /* SceneDelegate.m in Sources */,
 				99D30DEF26252AD200C233FC /* GenerateRSAKey.m in Sources */,
 			);

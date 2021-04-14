@@ -8,6 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
+#import "NetworkRequestHTTP.h"
+#import "NetworkResponseHTTP.h"
+
 @interface NetworkManagerHTTP : NSObject
+
+@property (nonatomic, strong) NSMutableArray *arrRequests;
+
++(NetworkManagerHTTP *)getInstance;
+
++(void)request:(NetworkRequestHTTP *)inRequest inResponse:(networkResponseBlock)responseHandler;
+//+(void)canecelRequest:(NetworkRequestHTTP *)inRequest;
+//+(void)cancelRequestWithRequestID:(NSString *)inRequestID;
+//+(void)cancelAllRequest;
+
 
 @end

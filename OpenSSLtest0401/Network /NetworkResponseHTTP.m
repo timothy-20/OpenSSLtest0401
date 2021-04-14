@@ -8,8 +8,6 @@
 
 #import "NetworkResponseHTTP.h"
 
-#define URL_PARAMETER @"http://qc.aircuve.com:10080/provision?akData=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdWIiOiJhayIsImRhdGEiOiJwMWNCb0VNeHBRY2N0cHhaTXBRYyIsImV4cCI6MTYxNzAwMTI3MiwiaWF0IjoxNjE3MDAwNjcyfQ.eG8U_PU5F20XyGfz0V-RFGqDkgexwQcsGH4tgSKWA4hSQ4oCM7p4Hiyj-o0ZpYyPHibvbrXxntHoT1DdcuTrWhmk3A8hC4VTcdYMPjekis_pgc6Sxmgbz-_6OXbtS2H5DRl-mHd3PbaVU1pNLg2tBMHeXYSZ-IuvmJW4Rz5qiNQ&publicKeyModulus=c109d8b86ee2c46965c399a70df07839fd9cb30c0dfef15c33fe06761349433208ce5c474b0fddf001c44ca6b25ac8e0f2470ea3d2b90a69b64cbb021b8ba7de4a02b6141f6c42c82be580d18d7932858ad963f1aea9e374b20846efbf472a0c8c9d5324030075a86a525744c63506e9084d2d3c0f8f0fa199c900ff17573a0b&publicKeyExponent=10001&ipAddress=10.10.20.51"
-
 @implementation NetworkResponseHTTP
 
 -(void)dealloc
@@ -18,6 +16,13 @@
     self.publicKeyModulus = nil;
     self.publicKeyExponent = nil;
     self.ipAddress = nil;
+    
+    self.responseData = nil;
+    self.responseDictionary = nil;
+    self.responseURL = nil;
+    self.error = nil;
+    self.headerResponse = nil;
+    self.networkRequest = nil;
 }
 
 -(id)init
@@ -42,11 +47,76 @@
         self.publicKeyModulus = [paramsDataDic valueForKey:@"publicKeyModulus"];
         self.publicKeyExponent = [paramsDataDic valueForKey:@"publicKeyExponent"];
         self.ipAddress = [paramsDataDic valueForKey:@"ipAddress"];
-//        데이터 값의 파라미터 분리
+//      url의 파라미터 분리
+        
+        self.responseData = nil;
+        self.responseURL = nil;
+        self.responseDictionary = nil;
+        self.error = nil;
+        self.headerResponse = nil;
+        self.networkRequest = nil;
     }
     
     return self;
 }
+
+-(void)addResponseData:(NSData *)addData
+{
+    if(self.responseData == nil) {
+        self.responseData = [[NSMutableData alloc] initWithCapacity:1];
+    }
+    
+    [self.responseData appendData: addData];
+}
+
+-(int)statusCode
+{
+    NSInteger nStatusCode = [[self responseURL] statusCode];
+    
+    if(!(nStatusCode == 200)) {
+        NSMutableDictionary *pDic = [NSMutableDictionary dictionaryWithCapacity:1];
+        [pDic setValue:[NSString stringWithFormat:@"%d", (int)nStatusCode] forKey:@"HTTP_STATUS_CODE"];
+        [pDic setValue:[NSHTTPURLResponse localizedStringForStatusCode:nStatusCode] forKey:@"HTTP_STATUS_DETAIL"];
+        [pDic setValue:[[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] forKey:@"RESPONSE_DATA"];
+        
+        self.error = [NSError errorWithDomain:@"ErrorDomain" code:nStatusCode userInfo:pDic];
+    }
+    
+    return (int)nStatusCode;
+}
+
+-(NSDictionary *)headerResponse
+{
+    return [self.responseURL allHeaderFields];
+}
+
+-(NSMutableDictionary *)responseDictionary
+{
+    NSString *postData = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
+    [self statusCode];
+    
+    NSData *data = [postData dataUsingEncoding:NSUTF8StringEncoding];//??
+    NSObject *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+    
+    if([jsonObject isKindOfClass:[NSDictionary class]]) {
+        return [NSMutableDictionary dictionaryWithDictionary:(NSDictionary *)jsonObject];
+    } else if([jsonObject isKindOfClass:[NSArray class]]) {
+        NSMutableDictionary *dicData = [NSMutableDictionary dictionary];
+        [dicData setObject:jsonObject forKey:@"array"];
+        
+        return dicData;
+    }
+    
+    return nil;
+}
+
+
+
+
+
+
+
+
 
 
 @end

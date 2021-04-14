@@ -41,18 +41,15 @@
         [self.urlRequest setValue:[NSString stringWithString:xTokenAuth] forHTTPHeaderField:@"X-AUTH-TOKEN"];
         //request Header
         
-        [self sendDeviceInfo];
-        //request Body
-        
         self.requestID = [self.requestData objectForKey:@"deviceId"];
     }
     
     return self;
 }
 
-+(NetworkRequestHTTP *)requestWithURL
++(NetworkRequestHTTP *)requestWithURL:(NSURL *)url
 {
-    return [[NetworkRequestHTTP alloc] initWithURL:<#(NSURL *)#>];
+    return [[NetworkRequestHTTP alloc] initWithURL:url];
 }
 
 -(void)sendDeviceInfo
@@ -67,6 +64,32 @@
     [deviceInfo setObject:[NSString stringWithFormat:@"null"] forKey:@"token"];
     
     [self.requestData setDictionary:deviceInfo];
+}
+
++(NSString *)dictionaryToJson:(NSDictionary *)inDic
+{
+    NSString *result = @"";
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:inDic options:NSJSONWritingPrettyPrinted error:&error];
+    
+    if(!jsonData) {
+        NSLog(@"Ocurred Error: %@", error);
+    } else {
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        result = jsonString;
+    }
+    
+    return result;
+}
+
+-(void)requestBody
+{
+    [self sendDeviceInfo];
+    
+    NSMutableData *body = [NSMutableData data];
+    [body appendData:[[NetworkRequestHTTP dictionaryToJson:self.requestData] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [self.urlRequest setHTTPBody:body];
 }
 
 @end

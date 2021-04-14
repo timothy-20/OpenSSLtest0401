@@ -36,13 +36,23 @@
         self.urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15.0];
         
         [self.urlRequest setHTTPMethod:HTTP_METHOD_POST];
-        [self.urlRequest setValue:[NSString stringWithFormat:@"application/json"] forKey:@"Content-Type"];
-        [self.urlRequest setValue:[NSString stringWithFormat:@"Basic %@", BASIC_AUTH] forKey:@"Authorization"];
-
+        [self.urlRequest setValue:[NSString stringWithFormat:@"application/json"] forHTTPHeaderField:@"Content-Type"];
+        [self.urlRequest setValue:[NSString stringWithFormat:@"Basic %@", BASIC_AUTH] forHTTPHeaderField:@"Authorization"];
+        [self.urlRequest setValue:[NSString stringWithString:xTokenAuth] forHTTPHeaderField:@"X-AUTH-TOKEN"];
+        //request Header
         
+        [self sendDeviceInfo];
+        //request Body
+        
+        self.requestID = [self.requestData objectForKey:@"deviceId"];
     }
     
     return self;
+}
+
++(NetworkRequestHTTP *)requestWithURL
+{
+    return [[NetworkRequestHTTP alloc] initWithURL:<#(NSURL *)#>];
 }
 
 -(void)sendDeviceInfo
@@ -56,7 +66,7 @@
     [deviceInfo setObject:[NSString stringWithFormat:@"%@", [NSBundle.mainBundle.infoDictionary objectForKey:@"CFBundleShortVersionString"]] forKey:@"appVersion"];
     [deviceInfo setObject:[NSString stringWithFormat:@"null"] forKey:@"token"];
     
-    
+    [self.requestData setDictionary:deviceInfo];
 }
 
 @end

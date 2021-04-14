@@ -12,12 +12,11 @@ activation key를 rsa 알고리즘으로 암호화 한 값을(16진수 문자열
 activationKey를 request할 서버의 주소 파라미터로 사용합니다. jwtToken을 request하여 인증을 시도합니다.<br>
 
 ## 패치
-21.04.6//jwt 토큰에서 payload를 추출하는 클래스를 추가했습니다.(payload의 activation key 추출)<br>
-            //cocoapod OpenSSL을 이용하여 encode 로직을 구현했습니다.(미완)<br>
+21.04.6//jwt 토큰에서 payload를 추출하는 클래스를 추가했습니다.(payload의 activation key 추출) cocoapod OpenSSL을 이용하여 encode 로직을 구현했습니다.(미완)<br>
 21.04.7//request 구현 중입니다. XAuthToken 생성 로직 구현을 마무리했습니다.<br>
 21.04.8//request 구현 완료했습니다. response 작업 중 입니다.<br>
 21.04.9//response 구현 완료했습니다. session을 작업하고 있습니다.<br>
-~21.04.12//session(manager class) 구현 완료했습니다. 구성이 크게 조악해 다시 구성했습니다.
+~21.04.12//session(manager class) 구현 완료했습니다. 소스의 전체적인 흐름을 다시 구성하였습니다.
 
 
 

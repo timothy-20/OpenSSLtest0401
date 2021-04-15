@@ -14,7 +14,7 @@ static NetworkManagerHTTP *networkManager = nil;
 
 @interface NetworkManagerHTTP ()
 
-@property (atomic, strong) NSOperationQueue *queue;
+@property (atomic, strong) NSOperationQueue *operationQueue;
 
 @end
 
@@ -37,6 +37,24 @@ static NetworkManagerHTTP *networkManager = nil;
 }
 
 #pragma mark - life cycle
+-(id)init
+{
+    self = [super init];
+    if (self) {
+        self.operationQueue = [[NSOperationQueue alloc] init];
+        [self.operationQueue setMaxConcurrentOperationCount:10];
+        self.arrRequests = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    
+    return self;
+}
+
+-(void)dealloc
+{
+    self.operationQueue = nil;
+    self.arrRequests = nil;
+}
+
 
 #pragma mark -
 -(void)sendRequestData:(NetworkRequestHTTP *)inRequest inResponse:(networkResponseBlock)responseHandeler
@@ -45,7 +63,35 @@ static NetworkManagerHTTP *networkManager = nil;
     
     NetworkConnectionHTTP *pConnection = nil;
     
-    for(pDic in self.arrRequests)
+    for(pDic in self.arrRequests) {
+        pConnection = [pDic objectForKey:@"NET_CONNECTION"];
+        if (pConnection != nil && [pConnection.networkRequest.requestID isEqualToString:inRequest.requestID]) {
+            return;
+        }
+    }
+    
+    [inRequest requestBody];
+    [inRequest.urlRequest setHTTPShouldHandleCookies:NO];
+    
+    pConnection = [[NetworkConnectionHTTP alloc] initWithRequest:inRequest delegate:networkManager startImmediately:NO];
+    pConnection.networkResponse.blockResponse = responseHandeler;
+    [pConnection  setDelegateQueue:networkManager.operationQueue];
+    
+    pDic = [NSMutableDictionary dictionaryWithCapacity:1];
+    [pDic setObject:pConnection forKey:@"NET_CONNECTION"];
+    [self.arrRequests addObject:pDic];
+    
+    NSLog(@"URL: %@", inRequest.urlRequest.URL);
+    NSDictionary *dicAllHTTPHeaderField = [inRequest.urlRequest allHTTPHeaderFields];
+    NSLog(@"all Header Field: %@", dicAllHTTPHeaderField);
+    
+    NSData *dataHTTPBody = [inRequest.urlRequest HTTPBody];
+    if(nil != dataHTTPBody) {
+        NSString *strHTTPBody = [[NSString alloc] initWithData:dataHTTPBody encoding:NSUTF8StringEncoding];
+        NSLog(@"HTTP Body: %@", strHTTPBody);
+    }
+    
+    [pConnection start];
 }
 
 @end

@@ -16,7 +16,7 @@
 +(void)cancelAllRequest;
 +(void)cancelRequestWithID:(NSString *)requestID;
 
-//+(NSString *)getAuthRequestWithResponse:(netw)
++(NSString *)getAuthRequestWithResponse:(networkResponseBlock)handlerResponse;
 
 
 @end

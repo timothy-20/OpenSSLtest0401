@@ -13,6 +13,12 @@
 
 #import <UIKit/UIKit.h>
 
+@interface NetworkRequestHTTP()
+
+@property (atomic, strong) NSMutableDictionary *requestData;
+
+@end
+
 @implementation NetworkRequestHTTP
 
 -(void)dealloc
@@ -32,6 +38,8 @@
         
         JWTTokenFactory *token = [JWTTokenFactory sendXAuthToken:TOKEN_SECRET inSubject:@"ak" inPlainData:parsedAK];
         NSString *xTokenAuth = [token requestToken];
+        
+        self.requestData = [[NSMutableDictionary alloc] initWithCapacity:1];
         
         self.urlRequest = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:15.0];
         
@@ -54,7 +62,7 @@
 
 -(void)sendDeviceInfo
 {
-    NSMutableDictionary *deviceInfo = [NSMutableDictionary dictionary];
+    NSMutableDictionary *deviceInfo = [[NSMutableDictionary alloc] init];
     
     [deviceInfo setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].identifierForVendor.UUIDString] forKey:@"deviceId"];
     [deviceInfo setObject:[NSString stringWithFormat:@"%@", [UIDevice currentDevice].name] forKey:@"deviceName"];
@@ -66,28 +74,38 @@
     [self.requestData setDictionary:deviceInfo];
 }
 
-+(NSString *)dictionaryToJson:(NSDictionary *)inDic
-{
-    NSString *result = @"";
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:inDic options:NSJSONWritingPrettyPrinted error:&error];
-    
-    if(!jsonData) {
-        NSLog(@"Ocurred Error: %@", error);
-    } else {
-        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        result = jsonString;
-    }
-    
-    return result;
-}
+//+(NSString *)dictionaryToJson:(NSDictionary *)inDic
+//{
+//    NSString *result = @"";
+//    NSError *error;
+//    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:inDic options:NSJSONWritingPrettyPrinted error:&error];
+//
+//    if(!jsonData) {
+//        NSLog(@"Ocurred Error: %@", error);
+//    } else {
+//        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+//        result = jsonString;
+//    }
+//
+//    return result;
+//}
 
 -(void)requestBody
 {
     [self sendDeviceInfo];
     
-    NSMutableData *body = [NSMutableData data];
-    [body appendData:[[NetworkRequestHTTP dictionaryToJson:self.requestData] dataUsingEncoding:NSUTF8StringEncoding]];
+    NSMutableData *body = [[NSMutableData alloc] init];
+    NSError *error;
+    
+    NSDictionary *requestDic = self.requestData;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:requestDic options:NSJSONWritingPrettyPrinted error:&error];
+    
+    if(! jsonData) {
+        NSLog(@"Ocurred Error");
+    } else {
+        [body appendData:jsonData];
+    }
     
     [self.urlRequest setHTTPBody:body];
 }

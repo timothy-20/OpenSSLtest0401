@@ -22,6 +22,7 @@
 		99D30E012625844E00C233FC /* NetworkManagerHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30E002625844E00C233FC /* NetworkManagerHTTP.m */; };
 		99D30E042626C7AF00C233FC /* NetworkCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30E032626C7AE00C233FC /* NetworkCommon.m */; };
 		99D30E072626D6A300C233FC /* NetworkConnectionHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30E062626D6A300C233FC /* NetworkConnectionHTTP.m */; };
+		99D30E0A2627FBF100C233FC /* NetworkSessionHTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = 99D30E092627FBF100C233FC /* NetworkSessionHTTP.m */; };
 		F59689CD330D79B31FCF20C7 /* libPods-OpenSSLtest0401.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F7125BB2C1A568B7CB205FA /* libPods-OpenSSLtest0401.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,8 @@
 		99D30E032626C7AE00C233FC /* NetworkCommon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkCommon.m; sourceTree = "<group>"; };
 		99D30E052626D6A300C233FC /* NetworkConnectionHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkConnectionHTTP.h; sourceTree = "<group>"; };
 		99D30E062626D6A300C233FC /* NetworkConnectionHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkConnectionHTTP.m; sourceTree = "<group>"; };
+		99D30E082627FBF000C233FC /* NetworkSessionHTTP.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkSessionHTTP.h; sourceTree = "<group>"; };
+		99D30E092627FBF100C233FC /* NetworkSessionHTTP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NetworkSessionHTTP.m; sourceTree = "<group>"; };
 		FBC5209F42C17B14363C6059 /* Pods-OpenSSLtest0401.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OpenSSLtest0401.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OpenSSLtest0401/Pods-OpenSSLtest0401.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +135,8 @@
 				99D30E032626C7AE00C233FC /* NetworkCommon.m */,
 				99D30E052626D6A300C233FC /* NetworkConnectionHTTP.h */,
 				99D30E062626D6A300C233FC /* NetworkConnectionHTTP.m */,
+				99D30E082627FBF000C233FC /* NetworkSessionHTTP.h */,
+				99D30E092627FBF100C233FC /* NetworkSessionHTTP.m */,
 			);
 			path = "Network ";
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				9941C29C2615B16900C06BF0 /* ViewController.m in Sources */,
 				99D30DF8262583ED00C233FC /* NetworkRequestHTTP.m in Sources */,
 				9941C2962615B16900C06BF0 /* AppDelegate.m in Sources */,
+				99D30E0A2627FBF100C233FC /* NetworkSessionHTTP.m in Sources */,
 				99D30E072626D6A300C233FC /* NetworkConnectionHTTP.m in Sources */,
 				99D30E012625844E00C233FC /* NetworkManagerHTTP.m in Sources */,
 				9941C2A72615B16E00C06BF0 /* main.m in Sources */,

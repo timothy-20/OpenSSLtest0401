@@ -7,7 +7,20 @@
 //
 
 #import "NetworkCommon.h"
+#import "GenerateRSAKey.h"
 
 @implementation NetworkCommon
+
++(NSString *)getAuthRequestWithResponse:(networkResponseBlock)handlerResponse
+{
+    GenerateRSAKey *rsa = [GenerateRSAKey sendPublicKey];
+    NSString *publicKey = rsa.publicKeyRSA;
+    
+    NSMutableString *urlStr = [NSMutableString stringWithString:MAKE_URL(publicKey)];
+    NetworkRequestHTTP *pRequest = [NetworkRequestHTTP requestWithURL:[NSURL URLWithString:urlStr]];
+    
+    [NetworkManagerHTTP request:pRequest inResponse:handlerResponse];
+    return pRequest.requestID;
+}
 
 @end

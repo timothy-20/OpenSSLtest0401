@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "NetworkResponseHTTP.h"
+#import "NetworkCommon.h"
 
 @interface ViewController ()
 
@@ -24,11 +24,24 @@
     
     //테스트용 값
     
-    NetworkResponseHTTP *response = [[NetworkResponseHTTP alloc] init];
+//    NetworkResponseHTTP *response = [[NetworkResponseHTTP alloc] init];
+//
+//    NSLog(@"akData: %@", [response akData]);
+//    NSLog(@"modulusData: %@", [response publicKeyModulus]);
+//    NSLog(@"exponentData: %@", [response publicKeyExponent]);
     
-    NSLog(@"akData: %@", [response akData]);
-    NSLog(@"modulusData: %@", [response publicKeyModulus]);
-    NSLog(@"exponentData: %@", [response publicKeyExponent]);
+    [self requestPush];
+}
+
+-(void)requestPush
+{
+    [NetworkCommon getAuthRequestWithResponse:^(NetworkResponseHTTP *response, eNET_RES_TYPE status){
+        NSArray *dicObject = [response.responseDictionary allValues];
+        NSArray *dicKey = [response.responseDictionary allKeys];
+        NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+        
+        NSLog(@"success");
+    }];
 }
 
 
